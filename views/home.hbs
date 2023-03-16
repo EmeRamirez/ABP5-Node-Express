@@ -1,0 +1,31 @@
+{{#> layoutExterno}}
+
+<main>
+        
+<div class="container-xxl py-5"> 
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 id="menu" class="section-title ff-secondary  text-primary fw-normal">Menú</h5>
+                    <h1 id="titulom" class="mb-5" style="color: whitesmoke;">{{capitalizar titulomenu}}</h1>
+                </div>
+               {{#each listaplatos}}
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-1">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="#" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span style="color: whitesmoke;">{{capitalizar nombre}}</span>
+                                                <span class="text-primary">{{CLP precio}}</span>
+                                            </h5>
+                                            <!--<small class="fst-italic">{{descripcion}}</small> -->
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                </div>
+        {{/each}}
+    </main>
+{{/layoutExterno}}

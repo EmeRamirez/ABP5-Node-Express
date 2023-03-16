@@ -1,0 +1,25 @@
+{
+  "name": "clase-4",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmeRamirez/ABP5-Node-Express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EmeRamirez/ABP5-Node-Express/issues"
+  },
+  "homepage": "https://github.com/EmeRamirez/ABP5-Node-Express#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.18.2",
+    "hbs": "^4.2.0"
+  }
+}

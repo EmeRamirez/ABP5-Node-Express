@@ -1,0 +1,69 @@
+header,
+footer {
+    background-color: rgb(255, 140, 86);
+    padding: 30px;
+}
+
+.cont-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+#formulario-agregar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vw;
+    gap: 10px;
+    padding: 3vw;
+    border: 3px solid black;
+}
+
+#formulario-eliminar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vw;
+    gap: 10px;
+    padding: 3vw;
+    border: 3px solid black;
+}
+
+nav a,
+a:visited {
+    text-decoration: none;
+    color: rgb(128, 81, 15);
+    font-weight: bold; 
+}
+
+.btn-nav {
+    border-radius: 10px; 
+    margin-right: 30px; 
+    margin-left: 15px; 
+}
+
+.btn-nav:hover {
+    transform: scale(105%);
+}
+
+.row {
+    display: flex;
+    padding-left: 2px;
+}
+
+main {
+    background-image: url("https://c.pxhere.com/photos/4d/2a/salad_background_food_tasty_olives_wooden_background_cooking_plate-1369816.jpg!d");
+    background-size: cover;
+}
+
+#menu {
+    padding-right: 500px;
+    font-size: 30px;
+}
+
+header,
+footer {
+    background: rgb(198, 237, 221);
+    background: linear-gradient(90deg, rgba(198, 237, 221, 1) 10%, rgba(190, 9, 9, 1) 87%)
+}
