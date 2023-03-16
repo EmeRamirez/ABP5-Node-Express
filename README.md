@@ -2,7 +2,7 @@
 Lectura y edición de JSON con Node y Express
 
 <h2>Instrucciones</h2>
-Run npm install express
-Run npm install hbs
-Run npm init
-Run index.js
+<li>Run npm install express</li>
+<li>Run npm install hbs</li>
+<li>Run npm init</li>
+<li>Run index.js</li>
