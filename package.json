@@ -17,9 +17,10 @@
     "url": "https://github.com/EmeRamirez/ABP5-Node-Express/issues"
   },
   "homepage": "https://github.com/EmeRamirez/ABP5-Node-Express#readme",
-  "description": "",
   "dependencies": {
     "express": "^4.18.2",
     "hbs": "^4.2.0"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

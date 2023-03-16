@@ -1,21 +1,19 @@
 import * as fs from "fs";
 //Primero importamos el método Router de express
 import { Router } from "express";
+import { escribirArchivo, leerArchivo } from "../functions.js";
 
 const router = Router();  //lo asignamos a una constante
 
-
-
 router.get("/" , (req,res)=>{
 
-    fs.readFile('db.json' , (err,data) => {
-        if (err) throw console.log('No se puede leer el archivo JSON');
-        let menu =JSON.parse(data);
-        let menuTitulo = Object.keys(menu);
-        menu = Object.values(menu)[0];
-        // console.log(menuTitulo,menu);
-        res.render("home",{listaplatos:menu , titulomenu:menuTitulo[0]})
-    });    
+    leerArchivo()
+        .then(data => {
+            let menu = data;
+            let menuTitulo = Object.keys(menu);
+            menu = Object.values(menu)[0];
+            res.render("home",{listaplatos:menu , titulomenu:menuTitulo[0]})
+        })  
 });
 
 router.get("/agregar" , (req,res)=>{  
@@ -27,38 +25,40 @@ router.get("/confirmacion" , (req,res)=>{
     let nombreplato = req.query.nombre.toLowerCase();
     let precioplato = req.query.precio;
 
-    //Asignamos el archivo JSON a una variable (Sync)
-    // const file = fs.readFileSync('db.json')
-
-    //Efectuamos la lectura del archivo JSON y dentro de esta función realizamos las siguientes tareas.
-    fs.readFile('db.json' , (err,data) => {
-        if (err) throw console.log("Error al leer el JSON.");
-        const file = data; 
-        
-            //Ingresamos los datos del formulario al formato requerido por el JSON
+    //Se lee el archivo JSON y se almacenan los datos
+    leerArchivo()
+        .then(data => {
+            let json = data;
+            
+            //Se crea un nuevo objeto con los datos traidos del formulario
             let nuevoPlato = {
                 "nombre": `${nombreplato}`,
                 "precio": parseInt(precioplato)
             };
-            
-            let json = JSON.parse(file.toString());
-            //Se añade el nuevo objeto creado a la lista de platos del menú del JSON
-            json.almuerzos.push(nuevoPlato);
-            // console.log(json);
-            
-            // fs.writeFileSync('db.json',JSON.stringify(json));
 
-            //Finalmente almacenamos el nuevo JSON sobreescribiendo el anterior
-            fs.writeFile('db.json',JSON.stringify(json),(err)=>{
-                if (err){
-                    let mensaje = "Error al sobreescribir el menú.";
-                    res.render("confirmacion",{resolucion:mensaje})
-                } else {
+            
+            //Se verifica si el plato está duplicado en el menú
+            let encontrado = json.almuerzos.find(el => el.nombre.toLowerCase() == nuevoPlato.nombre.toLowerCase())
+            if (!encontrado) {
+
+            //Se agrega el nuevo objeto al arreglo traido del db.json
+            json.almuerzos.push(nuevoPlato);
+
+            //Finalmente sobreescribimos el archivo db.json
+            escribirArchivo(json)
+                .then(()=> {
                     let mensaje = "Se añadió el nuevo plato al menú.";
                     res.render("confirmacion",{resolucion:mensaje})
-                }
-            })        
-    })        
+                })
+                .catch(()=>{
+                    let mensaje = "No se pudo añadir el plato al menú. Intente nuevamente.";
+                    res.render("confirmacion",{resolucion:mensaje})
+                })
+            } else {
+                let mensaje = "Este plato ya existe en el menú.";
+                res.render("confirmacion",{resolucion:mensaje})
+            }
+        })  
 });
 
 router.get("/eliminar" , (req,res)=>{
